@@ -64,8 +64,9 @@
     var remix = null; // the library transition picked in the Remix pill
 
     if (window.TdevBeam) window.TdevBeam.mount(document.getElementById("cm-beam"));
-    // The beam's tuning panel: localhost, or ?dev in the URL. Never for visitors.
-    if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname) || /[?&]dev\b/.test(location.search)) {
+    // The beam's tuning panel: opt-in via ?dev in the URL so localhost matches
+    // the clean visitor view by default (preserving full dev tuning at /?dev).
+    if (/[?&]dev\b/.test(location.search)) {
       var dev = document.createElement("script");
       dev.src = "assets/community/beam-dev.js" + ASSET_V;
       document.body.appendChild(dev);

@@ -104,3 +104,41 @@ Then open http://127.0.0.1:8765/.
 ## License
 
 You (and any coding agent working for you) may use the transitions and skills in unlimited personal and commercial projects, modify them, and ship them to your users. The only restriction: don't redistribute the library itself as a competing transitions library or kit. The tooling (CLI, agent, Refine) is MIT. See [LICENSE](LICENSE) and the [full terms](https://transitions.dev/terms.html).
+
+---
+
+## Personal Research Branch Notes（个人研究分支说明）
+
+> 本节为个人研究分支 `research/transitions-dev-study` 追加的本地复现、动效审计与合规说明；上方第 1–106 行完整保留原作者 Jakub Antalik 的原始 `README.md`，上游 `main` 分支保持零改动。
+
+### 项目来源与版权归属
+- **上游原仓库**：[https://github.com/Jakubantalik/transitions.dev](https://github.com/Jakubantalik/transitions.dev)
+- **官方网站**：[https://transitions.dev/](https://transitions.dev/)
+- **原作者**：Jakub Antalik（[@Jakubantalik](https://x.com/jakubantalik)）
+- **基线 Commit SHA**：`add5b467b13be16664d10fd888330ce2f3288b07`
+- **许可与不可再分发边界**：本项目严格遵守根目录 [LICENSE](LICENSE)。动效与 Skills 不得重新包装为竞争性动效库再分发；官网设计、品牌、Logo、宣传视频与商业字体 `assets/fonts/Saans-Medium.woff2/.woff` 保留原作者所有权利（All Rights Reserved）。
+
+### 本地安装与运行（零构建依赖）
+本站点为纯静态原生 HTML / CSS / Vanilla JS 项目（无需安装 React / Next.js / Vite 或第三方 npm 运行时依赖），仅需 Python 3：
+
+```bash
+python3 -m http.server 8765 --bind 127.0.0.1
+```
+
+启动后访问：
+- **干净访客展示 / 录屏模式**：`http://127.0.0.1:8765/`（本分支在 `assets/community/feed.js` 中将开发调试面板 `beam-dev.js` 收敛为显式 `?dev` 触发，默认画面与官网访客一致）
+- **开发调试模式（保留原始 Border Beam 调参面板）**：`http://127.0.0.1:8765/?dev`
+- **常用研究与演示入口**：`/library.html`、`/detail.html?t=card-resize`、`/prototypes.html`、`/skill.html`、`/example.html`、`/number.html`、`/transitions/`、`/skills/transitions-ui-generation/demo.html`
+
+### 已知限制与未验证项（Unverified）
+1. **私有后端服务（`api.transitions.dev` / `localhost:8787`）**：登录会话 (`/me`)、地区 PPP 折扣 (`/geo`)、实时会员数 (`/stats/people`)、首页社区组件流 (`/community/feed`)、Builder/Studio 持久化、Stripe 结账、在线 AI Fix 与远程 MCP 均依赖闭源私有后端，本地运行时预期出现 `localhost:8787` 连接拒绝报错，标注为 `Unverified`。
+2. **11 个 Pro 动效源码**：公开仓库仅包含与官网一致的混淆交互预览，可读 CSS/React 源码与 Pro Skill 位于私有仓库并受付费墙保护，标注为 `Unverified`（未做任何绕过或反混淆）。
+3. **上游原始 404（本地与官网一致）**：Cmd+K 搜索框引用的 `assets/community/thumbs/number-subtle-change.jpg` / `-dark.jpg` 及部分独立演示页的 `/favicon.ico` 在官网同样返回 HTTP 404，本分支未伪造资源。
+
+### 研究文档索引
+- [docs/source-audit.md](docs/source-audit.md) — 源码架构、依赖与授权边界审计
+- [docs/feature-inventory.md](docs/feature-inventory.md) — 全站 34 页、44 动效与工具链功能清单
+- [docs/motion-audit.md](docs/motion-audit.md) — 全量 44 个动效参数、双端实测与 8 组核心对齐轨迹对比
+- [docs/visual-diff.md](docs/visual-diff.md) — 桌面/移动端 11 路由视觉对比与专项异常分析
+- [docs/github-publishing.md](docs/github-publishing.md) — Fork、独立分支管理、安全扫描与 GitHub 推送方案
+- [docs/video-production-plan.md](docs/video-production-plan.md) — 本机 macOS 原生录屏、MP4 导出与原创视频制作规划
